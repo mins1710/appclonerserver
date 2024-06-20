@@ -1,5 +1,20 @@
 const Proxy = require('../models/proxyModel'); // Assuming the model is defined in a file called 'Proxy.js'
+const https = require('https');
+const ProxyAgent = require('proxy-agent');
+const axios = require('axios');
 
+
+async function checkProxy(host, port, username = null, password = null, type = "http") {
+    const proxy = {
+     protocol: "http",
+     host: host,
+     port: port,
+     ...(username && password ? { username: username, password: password } : {})
+    }
+    const res = await axios.get("http://icanhazip.com", {proxy});
+    return res.data;
+}
+   
 // Create a new proxy
 async function createProxy(ipAddress, port, username, password) {
     try {
@@ -11,6 +26,7 @@ async function createProxy(ipAddress, port, username, password) {
         throw new Error('Internal Server Error');
     }
 }
+
 
  function convertProxies(proxies){
     try {
@@ -87,5 +103,6 @@ module.exports = {
     getProxyById,
     updateProxyById,
     deleteProxyById,
-    convertProxies
+    convertProxies,
+    checkProxy
 };

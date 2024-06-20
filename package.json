@@ -18,11 +18,13 @@
     "config": "^3.3.11",
     "ejs": "^3.1.9",
     "express": "^4.18.3",
+    "https-proxy-agent": "^7.0.4",
     "mailparser": "^3.7.0",
     "mongoose": "^8.2.2",
     "multer": "^1.4.5-lts.1",
     "node-imap": "^0.9.6",
     "node-pop3": "^0.9.0",
+    "proxy-agent": "^6.4.0",
     "ws": "^8.16.0"
   },
   "devDependencies": {

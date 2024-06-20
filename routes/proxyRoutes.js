@@ -80,4 +80,15 @@ router.delete('/proxies/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+router.post("/proxies/publicip", async(req,res)=> {
+   try {
+        console.log("Go to http://localhost")
+        if (!req.body.host || !req.body.port) return res.status(500).send({"message": "Invalid host or port"});
+        const data = await proxyController.checkProxy(req.body.host,req.body.port,req.body.username,req.body.password);
+        return res.status(200).send({message: data});
+   } catch (error) {
+        return res.status(500).send({message:error.message});
+   }
+})
 module.exports = router;
